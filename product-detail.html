@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Product Detail - E-Commerce Store</title>
+    
+    <!-- Bootstrap 4.5 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- Font Awesome 5.10.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-store"></i> E-Commerce Store
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">
+                            <i class="fas fa-box"></i> Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="categories.html">
+                            <i class="fas fa-list"></i> Categories
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i> Cart
+                            <span class="badge badge-pill badge-danger cart-badge">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container py-4">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="products.html">Products</a></li>
+                    <li class="breadcrumb-item active" aria-current="page" id="breadcrumb-product">Loading...</li>
+                </ol>
+            </nav>
+
+            <!-- Loading Indicator -->
+            <div id="loading-indicator" class="text-center py-5">
+                <div class="loading-spinner"></div>
+                <p class="mt-3 text-muted">Loading product details...</p>
+            </div>
+
+            <!-- Product Not Found -->
+            <div id="product-not-found" class="text-center py-5" style="display: none;">
+                <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
+                <h3>Product Not Found</h3>
+                <p class="text-muted">The product you're looking for doesn't exist.</p>
+                <a href="products.html" class="btn btn-primary">
+                    <i class="fas fa-arrow-left"></i> Back to Products
+                </a>
+            </div>
+
+            <!-- Product Detail Container -->
+            <div id="product-detail-container" class="row" style="display: none;">
+                <!-- Product Images (Left Column) -->
+                <div class="col-lg-6 mb-4">
+                    <!-- Image Carousel -->
+                    <div id="productCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner" id="carousel-images">
+                            <!-- Images will be loaded dynamically -->
+                        </div>
+                        <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product Information (Right Column) -->
+                <div class="col-lg-6">
+                    <div class="product-info">
+                        <!-- Product Name -->
+                        <h1 id="product-name" class="mb-3"></h1>
+
+                        <!-- Product Price -->
+                        <h2 class="text-primary mb-3">
+                            <span id="product-price"></span>
+                        </h2>
+
+                        <!-- Availability Status -->
+                        <div class="mb-3">
+                            <span id="availability-badge"></span>
+                        </div>
+
+                        <!-- Product Description -->
+                        <div class="mb-4">
+                            <h5>Description</h5>
+                            <p id="product-description" class="text-muted"></p>
+                        </div>
+
+                        <!-- Category -->
+                        <div class="mb-4">
+                            <h6>Category</h6>
+                            <span id="product-category" class="badge badge-secondary"></span>
+                        </div>
+
+                        <!-- Add to Cart Section -->
+                        <div class="add-to-cart-section">
+                            <div class="form-group">
+                                <label for="quantity">Quantity:</label>
+                                <input type="number" id="quantity" class="form-control" value="1" min="1" max="99" style="max-width: 100px;">
+                            </div>
+                            <button id="add-to-cart-btn" class="btn btn-primary btn-lg btn-block">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                            <div id="add-to-cart-feedback" class="mt-3" style="display: none;"></div>
+                        </div>
+
+                        <!-- Back to Products Link -->
+                        <div class="mt-4">
+                            <a href="products.html" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left"></i> Back to Products
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 E-Commerce Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- jQuery 3.x -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
+    <!-- Bootstrap 4.5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- Products Module -->
+    <script src="js/products.js"></script>
+    
+    <!-- Cart Module -->
+    <script src="js/cart.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    
+    <!-- Application Controller -->
+    <script src="js/app.js"></script>
+    
+    <!-- Product Detail Page Script -->
+    <script>
+        $(document).ready(function() {
+            initProductDetailPage();
+        });
+
+        /**
+         * Initialize the product detail page
+         */
+        function initProductDetailPage() {
+            // Get product ID from URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+
+            if (!productId) {
+                showProductNotFound();
+                return;
+            }
+
+            // Load product details
+            loadProductDetails(productId);
+        }
+
+        /**
+         * Load and display product details
+         * @param {string} productId - Product ID
+         */
+        function loadProductDetails(productId) {
+            showLoading();
+
+            ProductsModule.getProductById(productId)
+                .then(function(product) {
+                    hideLoading();
+
+                    if (!product) {
+                        showProductNotFound();
+                        return;
+                    }
+
+                    renderProductDetails(product);
+                    setupAddToCartButton(product);
+                })
+                .catch(function(error) {
+                    hideLoading();
+                    console.error('Error loading product:', error);
+                    showError('Failed to load product details. Please try again later.');
+                });
+        }
+
+        /**
+         * Render product details on the page
+         * @param {Object} product - Product object
+         */
+        function renderProductDetails(product) {
+            // Update page title
+            document.title = product.name + ' - E-Commerce Store';
+
+            // Update breadcrumb
+            $('#breadcrumb-product').text(product.name);
+
+            // Render product images carousel
+            renderCarousel(product.images);
+
+            // Render product information
+            $('#product-name').text(product.name);
+            $('#product-price').text('$' + product.price.toFixed(2));
+            $('#product-description').text(product.description);
+            $('#product-category').text(product.category);
+
+            // Render availability status (Requirement 12.2)
+            if (product.availability) {
+                $('#availability-badge').html('<span class="badge badge-success badge-lg"><i class="fas fa-check-circle"></i> In Stock</span>');
+                $('#add-to-cart-btn').prop('disabled', false);
+            } else {
+                // Requirement 12.2: Add unavailability messages for out-of-stock products
+                $('#availability-badge').html(
+                    '<span class="badge badge-secondary badge-lg"><i class="fas fa-times-circle"></i> Out of Stock</span>' +
+                    '<div class="alert alert-warning mt-3" role="alert">' +
+                        '<i class="fas fa-exclamation-triangle"></i> ' +
+                        '<strong>Currently Unavailable</strong><br>' +
+                        'This product is currently out of stock. Please check back later or browse similar products.' +
+                    '</div>'
+                );
+                $('#add-to-cart-btn').prop('disabled', true);
+                $('#add-to-cart-btn').html('<i class="fas fa-ban"></i> Out of Stock');
+            }
+
+            // Show product detail container
+            $('#product-detail-container').show();
+        }
+
+        /**
+         * Render image carousel
+         * @param {Array} images - Array of image URLs
+         */
+        function renderCarousel(images) {
+            const carouselInner = $('#carousel-images');
+            carouselInner.empty();
+
+            if (!images || images.length === 0) {
+                // Use placeholder if no images
+                carouselInner.append(
+                    '<div class="carousel-item active">' +
+                    '<img src="images/placeholder.jpg" class="d-block w-100" alt="Product Image">' +
+                    '</div>'
+                );
+                return;
+            }
+
+            // Add each image to carousel
+            images.forEach(function(imageUrl, index) {
+                const activeClass = index === 0 ? 'active' : '';
+                carouselInner.append(
+                    '<div class="carousel-item ' + activeClass + '">' +
+                    '<img src="' + imageUrl + '" class="d-block w-100" alt="Product Image ' + (index + 1) + '" ' +
+                    'onerror="this.src=\'images/placeholder.jpg\'">' +
+                    '</div>'
+                );
+            });
+        }
+
+        /**
+         * Setup add to cart button functionality
+         * @param {Object} product - Product object
+         */
+        function setupAddToCartButton(product) {
+            $('#add-to-cart-btn').off('click').on('click', function() {
+                // Requirement 12.2: Prevent adding out-of-stock products
+                if (!product.availability) {
+                    showFeedback('This product is currently unavailable and cannot be added to cart.', 'error');
+                    return;
+                }
+
+                const quantity = parseInt($('#quantity').val());
+                
+                if (isNaN(quantity) || quantity < 1) {
+                    showFeedback('Please enter a valid quantity.', 'error');
+                    return;
+                }
+
+                // Prepare product details for cart
+                const productDetails = {
+                    name: product.name,
+                    price: product.price,
+                    image: product.images && product.images.length > 0 ? product.images[0] : 'images/placeholder.jpg'
+                };
+
+                // Add to cart
+                CartModule.addToCart(product.id, quantity, productDetails);
+
+                // Show success feedback
+                showFeedback('Product added to cart successfully!', 'success');
+
+                // Update cart badge
+                if (typeof updateCartBadge === 'function') {
+                    updateCartBadge();
+                } else if (typeof CartModule.updateCartBadge === 'function') {
+                    CartModule.updateCartBadge();
+                }
+            });
+        }
+
+        /**
+         * Show feedback message
+         * @param {string} message - Feedback message
+         * @param {string} type - Message type ('success' or 'error')
+         */
+        function showFeedback(message, type) {
+            const feedbackDiv = $('#add-to-cart-feedback');
+            const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+            const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle';
+
+            feedbackDiv.html(
+                '<div class="alert ' + alertClass + ' alert-dismissible fade show" role="alert">' +
+                '<i class="fas ' + icon + '"></i> ' + message +
+                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                '<span aria-hidden="true">&times;</span>' +
+                '</button>' +
+                '</div>'
+            );
+            feedbackDiv.show();
+
+            // Auto-hide success messages after 3 seconds
+            if (type === 'success') {
+                setTimeout(function() {
+                    feedbackDiv.fadeOut();
+                }, 3000);
+            }
+        }
+
+        /**
+         * Show loading indicator
+         */
+        function showLoading() {
+            $('#loading-indicator').show();
+            $('#product-detail-container').hide();
+            $('#product-not-found').hide();
+        }
+
+        /**
+         * Hide loading indicator
+         */
+        function hideLoading() {
+            $('#loading-indicator').hide();
+        }
+
+        /**
+         * Show product not found message
+         */
+        function showProductNotFound() {
+            $('#loading-indicator').hide();
+            $('#product-detail-container').hide();
+            $('#product-not-found').show();
+        }
+
+        /**
+         * Show error message
+         * @param {string} message - Error message
+         */
+        function showError(message) {
+            $('#product-detail-container').html(
+                '<div class="col-12">' +
+                '<div class="alert alert-danger" role="alert">' +
+                '<i class="fas fa-exclamation-triangle"></i> ' + message +
+                '</div>' +
+                '</div>'
+            );
+            $('#product-detail-container').show();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+[
+  {
+    "id": 1,
+    "name": "Wireless Bluetooth Headphones",
+    "description": "Premium noise-cancelling wireless headphones with 30-hour battery life. Features advanced Bluetooth 5.0 technology, comfortable over-ear design, and crystal-clear audio quality perfect for music lovers and professionals.",
+    "price": 89.99,
+    "category": "Electronics",
+    "images": [
+      "images/products/headphones-1.jpg",
+      "images/products/headphones-2.jpg",
+      "images/products/headphones-3.jpg"
+    ],
+    "availability": true,
+    "featured": true
+  },
+  {
+    "id": 2,
+    "name": "Smart Watch Pro",
+    "description": "Advanced fitness tracking smartwatch with heart rate monitor, GPS, and water resistance up to 50m. Track your workouts, receive notifications, and monitor your health 24/7 with this sleek wearable device.",
+    "price": 249.99,
+    "category": "Electronics",
+    "images": [
+      "images/products/smartwatch-1.jpg",
+      "images/products/smartwatch-2.jpg",
+      "images/products/smartwatch-3.jpg",
+      "images/products/smartwatch-4.jpg"
+    ],
+    "availability": true,
+    "featured": true
+  },
+  {
+    "id": 3,
+    "name": "4K Ultra HD Webcam",
+    "description": "Professional-grade 4K webcam with auto-focus and built-in dual microphones. Perfect for video conferencing, streaming, and content creation. Compatible with all major platforms.",
+    "price": 129.99,
+    "category": "Electronics",
+    "images": [
+      "images/products/webcam-1.jpg",
+      "images/products/webcam-2.jpg"
+    ],
+    "availability": false,
+    "featured": false
+  },
+  {
+    "id": 4,
+    "name": "Classic Cotton T-Shirt",
+    "description": "Comfortable 100% organic cotton t-shirt with a modern fit. Available in multiple colors, this versatile wardrobe essential is perfect for casual everyday wear. Pre-shrunk and machine washable.",
+    "price": 24.99,
+    "category": "Clothing",
+    "images": [
+      "images/products/tshirt-1.jpg",
+      "images/products/tshirt-2.jpg",
+      "images/products/tshirt-3.jpg"
+    ],
+    "availability": true,
+    "featured": false
+  },
+  {
+    "id": 5,
+    "name": "Denim Jacket",
+    "description": "Timeless denim jacket with a vintage wash finish. Features button closure, chest pockets, and a comfortable relaxed fit. A classic piece that pairs well with any outfit.",
+    "price": 79.99,
+    "category": "Clothing",
+    "images": [
+      "images/products/jacket-1.jpg",
+      "images/products/jacket-2.jpg",
+      "images/products/jacket-3.jpg"
+    ],
+    "availability": true,
+    "featured": true
+  },
+  {
+    "id": 6,
+    "name": "Running Shoes",
+    "description": "Lightweight performance running shoes with responsive cushioning and breathable mesh upper. Engineered for comfort and speed, perfect for daily training and long-distance runs.",
+    "price": 119.99,
+    "category": "Clothing",
+    "images": [
+      "images/products/shoes-1.jpg",
+      "images/products/shoes-2.jpg",
+      "images/products/shoes-3.jpg",
+      "images/products/shoes-4.jpg"
+    ],
+    "availability": true,
+    "featured": false
+  },
+  {
+    "id": 7,
+    "name": "Ceramic Coffee Mug Set",
+    "description": "Set of 4 handcrafted ceramic coffee mugs with elegant design. Microwave and dishwasher safe. Each mug holds 12oz and features a comfortable handle. Perfect for your morning coffee or tea.",
+    "price": 34.99,
+    "category": "Home",
+    "images": [
+      "images/products/mugs-1.jpg",
+      "images/products/mugs-2.jpg"
+    ],
+    "availability": true,
+    "featured": false
+  },
+  {
+    "id": 8,
+    "name": "Luxury Throw Blanket",
+    "description": "Ultra-soft fleece throw blanket measuring 60x80 inches. Perfect for cozying up on the couch or adding warmth to your bedroom. Machine washable and available in multiple colors.",
+    "price": 49.99,
+    "category": "Home",
+    "images": [
+      "images/products/blanket-1.jpg",
+      "images/products/blanket-2.jpg",
+      "images/products/blanket-3.jpg"
+    ],
+    "availability": true,
+    "featured": true
+  },
+  {
+    "id": 9,
+    "name": "Aromatherapy Diffuser",
+    "description": "Ultrasonic essential oil diffuser with LED mood lighting. Features 7 color options, auto shut-off, and whisper-quiet operation. Creates a relaxing atmosphere while humidifying your space.",
+    "price": 39.99,
+    "category": "Home",
+    "images": [
+      "images/products/diffuser-1.jpg",
+      "images/products/diffuser-2.jpg",
+      "images/products/diffuser-3.jpg"
+    ],
+    "availability": false,
+    "featured": false
+  },
+  {
+    "id": 10,
+    "name": "The Art of Programming",
+    "description": "Comprehensive guide to modern software development practices. Covers design patterns, clean code principles, and best practices. Perfect for intermediate to advanced developers looking to level up their skills.",
+    "price": 44.99,
+    "category": "Books",
+    "images": [
+      "images/products/book-programming-1.jpg",
+      "images/products/book-programming-2.jpg"
+    ],
+    "availability": true,
+    "featured": false
+  },
+  {
+    "id": 11,
+    "name": "Mindfulness and Meditation",
+    "description": "A practical guide to incorporating mindfulness into your daily life. Learn proven techniques to reduce stress, improve focus, and find inner peace. Includes guided exercises and meditation practices.",
+    "price": 19.99,
+    "category": "Books",
+    "images": [
+      "images/products/book-mindfulness-1.jpg",
+      "images/products/book-mindfulness-2.jpg",
+      "images/products/book-mindfulness-3.jpg"
+    ],
+    "availability": true,
+    "featured": true
+  },
+  {
+    "id": 12,
+    "name": "The Complete Cookbook",
+    "description": "Over 500 delicious recipes from around the world. From quick weeknight dinners to impressive entertaining dishes. Includes step-by-step instructions, beautiful photography, and helpful cooking tips.",
+    "price": 34.99,
+    "category": "Books",
+    "images": [
+      "images/products/book-cookbook-1.jpg",
+      "images/products/book-cookbook-2.jpg",
+      "images/products/book-cookbook-3.jpg"
+    ],
+    "availability": true,
+    "featured": false
+  }
+]

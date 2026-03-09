@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Order Confirmation - E-Commerce Store</title>
+    
+    <!-- Bootstrap 4.5 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- Font Awesome 5.10.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-store"></i> E-Commerce Store
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">
+                            <i class="fas fa-box"></i> Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="categories.html">
+                            <i class="fas fa-list"></i> Categories
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i> Cart
+                            <span class="badge badge-pill badge-danger cart-badge">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container py-5">
+            <!-- Success Header -->
+            <div class="text-center mb-4">
+                <i class="fas fa-check-circle text-success" style="font-size: 80px;"></i>
+                <h1 class="mt-3">Order Confirmed!</h1>
+                <p class="lead text-muted">Thank you for your purchase.</p>
+            </div>
+
+            <!-- Order Details Container -->
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- Order Number Card -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-receipt"></i> Order Number: <span id="order-number"></span>
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-0">
+                                <i class="fas fa-calendar-alt"></i> Order Date: <span id="order-date"></span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Order Items Card -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-box"></i> Order Items
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-right">Price</th>
+                                            <th class="text-right">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="order-items-tbody">
+                                        <!-- Order items will be loaded here -->
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3" class="text-right"><strong>Total:</strong></td>
+                                            <td class="text-right">
+                                                <strong class="text-success" id="order-total">$0.00</strong>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Information Card -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-shipping-fast"></i> Shipping Information
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="mb-2">
+                                        <strong><i class="fas fa-user"></i> Name:</strong><br>
+                                        <span id="shipping-name"></span>
+                                    </p>
+                                    <p class="mb-2">
+                                        <strong><i class="fas fa-map-marker-alt"></i> Address:</strong><br>
+                                        <span id="shipping-address"></span>
+                                    </p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-2">
+                                        <strong><i class="fas fa-city"></i> City:</strong><br>
+                                        <span id="shipping-city"></span>
+                                    </p>
+                                    <p class="mb-2">
+                                        <strong><i class="fas fa-phone"></i> Phone:</strong><br>
+                                        <span id="shipping-phone"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="text-center">
+                        <a href="products.html" class="btn btn-primary btn-lg">
+                            <i class="fas fa-shopping-bag"></i> Continue Shopping
+                        </a>
+                        <a href="index.html" class="btn btn-outline-secondary btn-lg">
+                            <i class="fas fa-home"></i> Go to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 E-Commerce Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- jQuery 3.x -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
+    <!-- Bootstrap 4.5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- Cart Module -->
+    <script src="js/cart.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    
+    <!-- Application Controller -->
+    <script src="js/app.js"></script>
+    
+    <!-- Confirmation Page Script -->
+    <script>
+        $(document).ready(function() {
+            initConfirmationPage();
+        });
+
+        /**
+         * Initialize the confirmation page (Sub-task 11.1)
+         * Requirements: 8.1, 8.2, 8.3, 8.4, 8.5
+         */
+        function initConfirmationPage() {
+            // Retrieve order data from localStorage
+            const orderData = getOrderData();
+
+            if (!orderData) {
+                // No order data found, redirect to home
+                showNoOrderError();
+                return;
+            }
+
+            // Display order details
+            displayOrderNumber(orderData);
+            displayOrderItems(orderData);
+            displayShippingInfo(orderData);
+            displayOrderTotal(orderData);
+
+            // Verify cart is cleared
+            verifyCartCleared();
+
+            // Update cart badge
+            updateCartBadge();
+
+            // Clear order data from localStorage after displaying
+            clearOrderData();
+        }
+
+        /**
+         * Retrieve order data from localStorage
+         * @returns {Object|null} Order data or null if not found
+         */
+        function getOrderData() {
+            try {
+                const orderJson = localStorage.getItem('lastOrder');
+                if (orderJson) {
+                    return JSON.parse(orderJson);
+                }
+            } catch (error) {
+                console.error('Error retrieving order data:', error);
+            }
+            return null;
+        }
+
+        /**
+         * Display order number and date (Sub-task 11.1)
+         * Requirements: 8.2
+         */
+        function displayOrderNumber(orderData) {
+            $('#order-number').text(orderData.orderNumber);
+            
+            // Format and display order date
+            const orderDate = new Date(orderData.orderDate);
+            const formattedDate = orderDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            $('#order-date').text(formattedDate);
+        }
+
+        /**
+         * Display order items with quantities and prices (Sub-task 11.1)
+         * Requirements: 8.3
+         */
+        function displayOrderItems(orderData) {
+            const tbody = $('#order-items-tbody');
+            tbody.empty();
+
+            if (!orderData.items || orderData.items.length === 0) {
+                tbody.append(
+                    '<tr>' +
+                        '<td colspan="4" class="text-center text-muted">No items found</td>' +
+                    '</tr>'
+                );
+                return;
+            }
+
+            // Display each item
+            orderData.items.forEach(function(item) {
+                const subtotal = (item.price * item.quantity).toFixed(2);
+                const rowHtml = 
+                    '<tr>' +
+                        '<td>' + escapeHtml(item.name) + '</td>' +
+                        '<td class="text-center">' + item.quantity + '</td>' +
+                        '<td class="text-right">$' + item.price.toFixed(2) + '</td>' +
+                        '<td class="text-right">$' + subtotal + '</td>' +
+                    '</tr>';
+                tbody.append(rowHtml);
+            });
+        }
+
+        /**
+         * Display shipping information (Sub-task 11.1)
+         * Requirements: 8.4
+         */
+        function displayShippingInfo(orderData) {
+            if (!orderData.shipping) {
+                return;
+            }
+
+            const shipping = orderData.shipping;
+            
+            // Display name
+            const fullName = escapeHtml(shipping.firstName) + ' ' + escapeHtml(shipping.lastName);
+            $('#shipping-name').text(fullName);
+
+            // Display address
+            const fullAddress = escapeHtml(shipping.address) + ', ' + escapeHtml(shipping.postalCode);
+            $('#shipping-address').text(fullAddress);
+
+            // Display city
+            $('#shipping-city').text(escapeHtml(shipping.city));
+
+            // Display phone
+            $('#shipping-phone').text(escapeHtml(shipping.phone));
+        }
+
+        /**
+         * Display order total (Sub-task 11.1)
+         * Requirements: 8.5
+         */
+        function displayOrderTotal(orderData) {
+            const total = orderData.total || 0;
+            $('#order-total').text('$' + total.toFixed(2));
+        }
+
+        /**
+         * Verify cart is cleared (Sub-task 11.1)
+         * The cart should already be cleared by checkout.html, but verify
+         */
+        function verifyCartCleared() {
+            if (typeof CartModule !== 'undefined') {
+                const cart = CartModule.getCart();
+                if (cart.length > 0) {
+                    // Cart not cleared, clear it now
+                    CartModule.clearCart();
+                }
+            }
+        }
+
+        /**
+         * Update cart badge in navigation
+         */
+        function updateCartBadge() {
+            if (typeof CartModule !== 'undefined' && CartModule.updateCartBadge) {
+                CartModule.updateCartBadge();
+            }
+        }
+
+        /**
+         * Clear order data from localStorage after displaying
+         */
+        function clearOrderData() {
+            try {
+                localStorage.removeItem('lastOrder');
+            } catch (error) {
+                console.error('Error clearing order data:', error);
+            }
+        }
+
+        /**
+         * Show error when no order data is found
+         */
+        function showNoOrderError() {
+            const container = $('.container.py-5');
+            container.html(
+                '<div class="text-center">' +
+                    '<i class="fas fa-exclamation-triangle text-warning" style="font-size: 80px;"></i>' +
+                    '<h1 class="mt-3">No Order Found</h1>' +
+                    '<p class="lead text-muted">We couldn\'t find your order details.</p>' +
+                    '<a href="products.html" class="btn btn-primary btn-lg mt-3">' +
+                        '<i class="fas fa-shopping-bag"></i> Start Shopping' +
+                    '</a>' +
+                    '<a href="index.html" class="btn btn-outline-secondary btn-lg mt-3">' +
+                        '<i class="fas fa-home"></i> Go to Home' +
+                    '</a>' +
+                '</div>'
+            );
+        }
+
+        /**
+         * Escape HTML to prevent XSS
+         * @param {string} text - Text to escape
+         * @returns {string} Escaped text
+         */
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>

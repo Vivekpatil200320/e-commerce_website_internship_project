@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopping Cart - E-Commerce Store</title>
+    
+    <!-- Bootstrap 4.5 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- Font Awesome 5.10.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-store"></i> E-Commerce Store
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">
+                            <i class="fas fa-box"></i> Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="categories.html">
+                            <i class="fas fa-list"></i> Categories
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i> Cart
+                            <span class="badge badge-pill badge-danger cart-badge">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container py-4">
+            <h1 class="mb-4">Shopping Cart</h1>
+
+            <!-- Empty Cart Message -->
+            <div id="empty-cart-message" class="text-center py-5" style="display: none;">
+                <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                <h3>Your cart is empty</h3>
+                <p class="text-muted">Add some products to get started!</p>
+                <a href="products.html" class="btn btn-primary">
+                    <i class="fas fa-box"></i> Browse Products
+                </a>
+            </div>
+
+            <!-- Cart Content -->
+            <div id="cart-content" style="display: none;">
+                <div class="row">
+                    <!-- Cart Items -->
+                    <div class="col-lg-8 mb-4">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-shopping-bag"></i> Cart Items
+                                </h5>
+                            </div>
+                            <div class="card-body p-0">
+                                <div id="cart-items-container">
+                                    <!-- Cart items will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cart Summary -->
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header bg-secondary text-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-calculator"></i> Order Summary
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Subtotal:</span>
+                                    <span id="cart-subtotal">$0.00</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Tax (0%):</span>
+                                    <span>$0.00</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Shipping:</span>
+                                    <span>Free</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <strong>Total:</strong>
+                                    <strong id="cart-total" class="text-primary">$0.00</strong>
+                                </div>
+                                <button id="proceed-checkout-btn" class="btn btn-success btn-lg btn-block">
+                                    <i class="fas fa-credit-card"></i> Proceed to Checkout
+                                </button>
+                                <a href="products.html" class="btn btn-outline-secondary btn-block mt-2">
+                                    <i class="fas fa-arrow-left"></i> Continue Shopping
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 E-Commerce Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- jQuery 3.x -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
+    <!-- Bootstrap 4.5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- Products Module -->
+    <script src="js/products.js"></script>
+    
+    <!-- Cart Module -->
+    <script src="js/cart.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    
+    <!-- Application Controller -->
+    <script src="js/app.js"></script>
+    
+    <!-- Cart Page Script -->
+    <script>
+        $(document).ready(function() {
+            initCartPage();
+        });
+
+        /**
+         * Initialize the cart page
+         */
+        function initCartPage() {
+            loadAndDisplayCart();
+            setupCheckoutButton();
+        }
+
+        /**
+         * Load and display cart contents
+         */
+        function loadAndDisplayCart() {
+            const cart = CartModule.getCart();
+            
+            if (cart.length === 0) {
+                showEmptyCart();
+                return;
+            }
+
+            // Load product details for cart items
+            const productPromises = cart.map(function(item) {
+                return ProductsModule.getProductById(item.productId);
+            });
+
+            Promise.all(productPromises)
+                .then(function(products) {
+                    renderCartItems(cart, products);
+                    updateCartSummary();
+                    showCartContent();
+                })
+                .catch(function(error) {
+                    console.error('Error loading cart items:', error);
+                    showError('Failed to load cart items. Please try again.');
+                });
+        }
+
+        /**
+         * Render cart items
+         * @param {Array} cart - Cart items array
+         * @param {Array} products - Product details array
+         */
+        function renderCartItems(cart, products) {
+            const container = $('#cart-items-container');
+            container.empty();
+
+            cart.forEach(function(item, index) {
+                const product = products[index];
+                if (product) {
+                    const cartItemHtml = createCartItemHtml(item, product);
+                    container.append(cartItemHtml);
+                }
+            });
+
+            // Setup event handlers for quantity controls
+            setupQuantityControls();
+        }
+
+        /**
+         * Create HTML for a cart item
+         * @param {Object} item - Cart item
+         * @param {Object} product - Product details
+         * @returns {string} HTML string
+         */
+        function createCartItemHtml(item, product) {
+            const imageUrl = product.images && product.images.length > 0 
+                ? product.images[0] 
+                : 'images/placeholder.jpg';
+            
+            const subtotal = (product.price * item.quantity).toFixed(2);
+
+            return '<div class="cart-item p-3 border-bottom" data-product-id="' + product.id + '">' +
+                '<div class="row align-items-center">' +
+                    '<div class="col-md-2 col-3">' +
+                        '<img src="' + imageUrl + '" class="img-fluid rounded" alt="' + product.name + '" ' +
+                             'onerror="this.src=\'images/placeholder.jpg\'">' +
+                    '</div>' +
+                    '<div class="col-md-4 col-9">' +
+                        '<h6 class="mb-1">' + product.name + '</h6>' +
+                        '<p class="text-muted small mb-0">$' + product.price.toFixed(2) + ' each</p>' +
+                    '</div>' +
+                    '<div class="col-md-3 col-6 mt-2 mt-md-0">' +
+                        '<div class="input-group input-group-sm">' +
+                            '<div class="input-group-prepend">' +
+                                '<button class="btn btn-outline-secondary qty-decrease" type="button">' +
+                                    '<i class="fas fa-minus"></i>' +
+                                '</button>' +
+                            '</div>' +
+                            '<input type="number" class="form-control text-center qty-input" ' +
+                                   'value="' + item.quantity + '" min="1" max="99" readonly>' +
+                            '<div class="input-group-append">' +
+                                '<button class="btn btn-outline-secondary qty-increase" type="button">' +
+                                    '<i class="fas fa-plus"></i>' +
+                                '</button>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="col-md-2 col-4 mt-2 mt-md-0 text-center">' +
+                        '<strong class="item-subtotal">$' + subtotal + '</strong>' +
+                    '</div>' +
+                    '<div class="col-md-1 col-2 mt-2 mt-md-0 text-center">' +
+                        '<button class="btn btn-sm btn-danger remove-item" title="Remove item">' +
+                            '<i class="fas fa-trash"></i>' +
+                        '</button>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+        }
+
+        /**
+         * Setup quantity control event handlers
+         */
+        function setupQuantityControls() {
+            // Decrease quantity
+            $('.qty-decrease').off('click').on('click', function() {
+                const cartItem = $(this).closest('.cart-item');
+                const productId = parseInt(cartItem.data('product-id'));
+                const input = cartItem.find('.qty-input');
+                const currentQty = parseInt(input.val());
+                
+                if (currentQty > 1) {
+                    const newQty = currentQty - 1;
+                    updateItemQuantity(productId, newQty, cartItem);
+                }
+            });
+
+            // Increase quantity (using stepUp as per requirement 6.9)
+            $('.qty-increase').off('click').on('click', function() {
+                const cartItem = $(this).closest('.cart-item');
+                const productId = parseInt(cartItem.data('product-id'));
+                const input = cartItem.find('.qty-input')[0];
+                const currentQty = parseInt(input.value);
+                
+                if (currentQty < 99) {
+                    input.stepUp(); // Using stepUp() as per requirement
+                    const newQty = parseInt(input.value);
+                    updateItemQuantity(productId, newQty, cartItem);
+                }
+            });
+
+            // Remove item
+            $('.remove-item').off('click').on('click', function() {
+                const cartItem = $(this).closest('.cart-item');
+                const productId = parseInt(cartItem.data('product-id'));
+                removeItem(productId, cartItem);
+            });
+        }
+
+        /**
+         * Update item quantity
+         * @param {number} productId - Product ID
+         * @param {number} newQty - New quantity
+         * @param {jQuery} cartItem - Cart item element
+         */
+        function updateItemQuantity(productId, newQty, cartItem) {
+            const startTime = performance.now();
+            
+            CartModule.updateQuantity(productId, newQty);
+            
+            // Update display
+            ProductsModule.getProductById(productId).then(function(product) {
+                const subtotal = (product.price * newQty).toFixed(2);
+                cartItem.find('.qty-input').val(newQty);
+                cartItem.find('.item-subtotal').text('$' + subtotal);
+                
+                updateCartSummary();
+                
+                if (typeof updateCartBadge === 'function') {
+                    updateCartBadge();
+                }
+                
+                const duration = performance.now() - startTime;
+                // Requirement 6.5: Update within 200ms
+                if (duration > 200) {
+                    console.warn('Cart update took longer than 200ms: ' + duration.toFixed(2) + 'ms');
+                }
+            });
+        }
+
+        /**
+         * Remove item from cart
+         * @param {number} productId - Product ID
+         * @param {jQuery} cartItem - Cart item element
+         */
+        function removeItem(productId, cartItem) {
+            CartModule.removeFromCart(productId);
+            
+            // Animate removal
+            cartItem.fadeOut(300, function() {
+                $(this).remove();
+                
+                // Check if cart is now empty
+                const cart = CartModule.getCart();
+                if (cart.length === 0) {
+                    showEmptyCart();
+                } else {
+                    updateCartSummary();
+                }
+                
+                if (typeof updateCartBadge === 'function') {
+                    updateCartBadge();
+                }
+            });
+        }
+
+        /**
+         * Update cart summary (subtotal and total)
+         */
+        function updateCartSummary() {
+            const total = CartModule.getTotalPrice();
+            $('#cart-subtotal').text('$' + total.toFixed(2));
+            $('#cart-total').text('$' + total.toFixed(2));
+        }
+
+        /**
+         * Setup checkout button
+         */
+        function setupCheckoutButton() {
+            $('#proceed-checkout-btn').on('click', function() {
+                const cart = CartModule.getCart();
+                
+                if (cart.length === 0) {
+                    showEmptyCart();
+                    return;
+                }
+                
+                // Navigate to checkout page
+                window.location.href = 'checkout.html';
+            });
+        }
+
+        /**
+         * Show empty cart message
+         */
+        function showEmptyCart() {
+            $('#cart-content').hide();
+            $('#empty-cart-message').show();
+        }
+
+        /**
+         * Show cart content
+         */
+        function showCartContent() {
+            $('#empty-cart-message').hide();
+            $('#cart-content').show();
+        }
+
+        /**
+         * Show error message
+         * @param {string} message - Error message
+         */
+        function showError(message) {
+            $('#cart-content').html(
+                '<div class="alert alert-danger" role="alert">' +
+                '<i class="fas fa-exclamation-triangle"></i> ' + message +
+                '</div>'
+            );
+            $('#cart-content').show();
+        }
+    </script>
+</body>
+</html>

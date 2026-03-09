@@ -1,0 +1,919 @@
+/* Custom Styles for E-Commerce Website */
+
+/* General Styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* Navigation Styles */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.25rem;
+    transition: opacity 0.1s ease;
+}
+
+.navbar-brand:hover {
+    opacity: 0.9;
+}
+
+.navbar-brand i {
+    margin-right: 0.5rem;
+}
+
+/* Requirement 10.2: Hover feedback within 100ms */
+.nav-link {
+    font-weight: 500;
+    transition: all 0.1s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #fff !important;
+    transform: translateY(-1px);
+}
+
+.nav-link:active {
+    transform: translateY(0);
+}
+
+/* Cart Badge */
+.cart-badge {
+    position: relative;
+    top: -2px;
+    margin-left: 0.25rem;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.hero-section h1 {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.hero-section .btn {
+    margin-top: 1rem;
+    padding: 0.75rem 2rem;
+}
+
+/* Product Cards */
+/* Requirement 10.2: Hover feedback within 100ms */
+.product-card {
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    height: 100%;
+    border: 1px solid #dee2e6;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    height: 200px;
+    object-fit: cover;
+    transition: opacity 0.1s ease;
+}
+
+.product-card:hover img {
+    opacity: 0.95;
+}
+
+.product-card .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    transition: color 0.1s ease;
+}
+
+.product-card:hover .card-title {
+    color: #007bff;
+}
+
+.product-card .price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #28a745;
+}
+
+/* Buttons */
+.btn {
+    transition: all 0.1s ease;
+}
+
+/* Requirement 10.2: Hover feedback within 100ms */
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #fff;
+}
+
+/* ===================================
+   MOBILE LAYOUTS (320px-767px)
+   Requirements: 9.2, 9.3, 9.5
+   =================================== */
+
+/* Requirement 9.5: Touch-friendly elements (44px minimum) */
+@media (max-width: 767px) {
+    /* Touch targets for all interactive elements */
+    .btn,
+    .nav-link,
+    .product-card,
+    .form-control,
+    .custom-control-label,
+    .input-group-prepend .btn,
+    .input-group-append .btn,
+    .navbar-toggler {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Requirement 9.2: Collapsible navigation spacing */
+    .navbar-nav {
+        padding: 1rem 0;
+    }
+    
+    .nav-item {
+        padding: 0.5rem 0;
+    }
+    
+    .nav-link {
+        padding: 0.75rem 1rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Requirement 9.3: Product grid stacking - one column on mobile */
+    .featured-products .row > [class*="col-"],
+    #products-container > [class*="col-"],
+    #featured-products-container > [class*="col-"] {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    /* Ensure product cards are full width on mobile */
+    .product-card {
+        margin-bottom: 1rem;
+    }
+    
+    /* Product card images optimized for mobile */
+    .product-card img {
+        height: 250px;
+        object-fit: cover;
+    }
+    
+    /* Cart item layout adjustments */
+    .cart-item .row {
+        margin: 0;
+    }
+    
+    .cart-item .col-3,
+    .cart-item .col-9,
+    .cart-item .col-6,
+    .cart-item .col-4,
+    .cart-item .col-2 {
+        padding: 0.5rem;
+    }
+    
+    /* Quantity controls touch-friendly */
+    .input-group-prepend .btn,
+    .input-group-append .btn {
+        padding: 0.75rem 1rem;
+    }
+    
+    .qty-input {
+        min-height: 44px;
+        font-size: 1rem;
+    }
+    
+    /* Form elements touch-friendly */
+    .form-control {
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+    
+    /* Buttons full width on mobile for better usability */
+    .btn-lg {
+        padding: 1rem;
+        font-size: 1.125rem;
+    }
+    
+    /* Hero section adjustments */
+    .hero-section {
+        padding: 2rem 0 !important;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-section .lead {
+        font-size: 1rem;
+    }
+    
+    .hero-section .btn {
+        margin-top: 1rem;
+        width: 100%;
+    }
+    
+    /* Filter sidebar on mobile */
+    aside .card {
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Category cards stack on mobile */
+    #categories-container > [class*="col-"] {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    /* Checkout form adjustments */
+    .form-row > [class*="col-"] {
+        margin-bottom: 1rem;
+    }
+    
+    /* Order summary on mobile */
+    #order-items-container {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    
+    /* Product detail page adjustments */
+    .product-info {
+        margin-top: 1rem;
+    }
+    
+    #quantity {
+        max-width: 100px;
+        min-height: 44px;
+    }
+    
+    /* Carousel controls touch-friendly */
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 44px;
+    }
+    
+    /* Alert messages readable on mobile */
+    .alert {
+        font-size: 0.95rem;
+        padding: 1rem;
+    }
+    
+    /* Footer text size */
+    footer {
+        font-size: 0.9rem;
+        padding: 1.5rem 0 !important;
+    }
+    
+    /* Breadcrumb adjustments */
+    .breadcrumb {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+    }
+    
+    /* Badge sizing */
+    .badge {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.6rem;
+    }
+    
+    /* Card body padding */
+    .card-body {
+        padding: 1rem;
+    }
+    
+    /* Ensure text is readable - minimum 14px */
+    body {
+        font-size: 14px;
+    }
+    
+    /* Container padding on mobile */
+    .container,
+    .container-fluid {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+/* Extra small devices (320px-575px) */
+@media (max-width: 575px) {
+    /* Further optimize for very small screens */
+    .hero-section h1 {
+        font-size: 1.75rem;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    /* Stack cart item columns more aggressively */
+    .cart-item .col-md-2,
+    .cart-item .col-md-4,
+    .cart-item .col-md-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Product card title sizing */
+    .product-card .card-title {
+        font-size: 1rem;
+    }
+    
+    /* Reduce padding on very small screens */
+    .py-5 {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+    
+    .py-4 {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+}
+
+/* ===================================
+   TABLET LAYOUTS (768px-1023px)
+   Requirements: 9.3, 9.4
+   =================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    /* Requirement 9.3: Grid layouts use appropriate columns */
+    /* Products: 2 columns on tablet */
+    #products-container > [class*="col-"],
+    #featured-products-container > [class*="col-"] {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    
+    /* Categories: 2 columns on tablet */
+    #categories-container > [class*="col-"] {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    
+    /* Requirement 9.4: Image sizing adjustments */
+    .product-card img {
+        height: 220px;
+        object-fit: cover;
+    }
+    
+    /* Hero section text sizing */
+    .hero-section h1,
+    .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-section .lead {
+        font-size: 1.15rem;
+    }
+    
+    /* Cart layout optimization */
+    .cart-item .col-md-2 {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+    
+    .cart-item .col-md-4 {
+        flex: 0 0 35%;
+        max-width: 35%;
+    }
+    
+    .cart-item .col-md-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    
+    /* Filter sidebar width */
+    aside.col-md-4 {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+    
+    .col-md-8 {
+        flex: 0 0 66.666667%;
+        max-width: 66.666667%;
+    }
+    
+    /* Checkout form layout */
+    .col-lg-8 {
+        flex: 0 0 60%;
+        max-width: 60%;
+    }
+    
+    .col-lg-4 {
+        flex: 0 0 40%;
+        max-width: 40%;
+    }
+    
+    /* Product detail layout */
+    .col-lg-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    
+    /* Carousel image sizing */
+    .carousel-item img {
+        max-height: 400px;
+        object-fit: contain;
+    }
+    
+    /* Card body padding */
+    .card-body {
+        padding: 1.25rem;
+    }
+    
+    /* Typography adjustments */
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+    }
+    
+    /* Container max width */
+    .container {
+        max-width: 960px;
+    }
+    
+    /* Button sizing */
+    .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.125rem;
+    }
+    
+    /* Navigation adjustments */
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+    
+    .nav-link {
+        font-size: 0.95rem;
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+/* Loading Indicator */
+/* Requirement 10.4: Loading indicators for operations over 300ms */
+.loading-spinner {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    border: 0.25rem solid rgba(0, 0, 0, 0.1);
+    border-top-color: #007bff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loading-overlay .spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Button loading state */
+.btn.loading {
+    position: relative;
+    color: transparent !important;
+    pointer-events: none;
+}
+
+.btn.loading::after {
+    content: "";
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    top: 50%;
+    left: 50%;
+    margin-left: -0.5rem;
+    margin-top: -0.5rem;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    color: #fff;
+}
+
+/* Alert Styles */
+/* Requirement 12.4: Style error messages with Bootstrap alert components */
+.alert {
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.alert i {
+    margin-right: 0.5rem;
+}
+
+.alert-dismissible .close {
+    padding: 0.75rem 1.25rem;
+}
+
+/* Out of stock styling */
+.product-card[style*="opacity: 0.7"] {
+    position: relative;
+}
+
+.product-card[style*="opacity: 0.7"]::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+}
+
+.badge {
+    transition: transform 0.1s ease;
+}
+
+.badge:hover {
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+}
+
+/* Filter Sidebar */
+.card-header h5 {
+    margin: 0;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #495057;
+}
+
+/* Requirement 10.2: Hover feedback within 100ms */
+.custom-control-label {
+    cursor: pointer;
+    transition: color 0.1s ease;
+}
+
+.custom-control-label:hover {
+    color: #007bff;
+}
+
+.form-control {
+    transition: border-color 0.1s ease, box-shadow 0.1s ease;
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.card {
+    transition: box-shadow 0.1s ease;
+}
+
+.card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Products Grid */
+#products-container {
+    min-height: 300px;
+}
+
+#no-products-message i {
+    opacity: 0.5;
+}
+
+/* ===================================
+   DESKTOP LAYOUTS (1024px-1920px)
+   Requirements: 9.1, 9.3, 9.4
+   =================================== */
+
+@media (min-width: 1024px) {
+    /* Requirement 9.1: Full navigation menu displays */
+    .navbar-collapse {
+        display: flex !important;
+    }
+    
+    .navbar-toggler {
+        display: none;
+    }
+    
+    /* Requirement 9.4: Maximum content width and centering */
+    .container {
+        max-width: 1140px;
+    }
+    
+    /* Products: 4 columns on desktop */
+    #products-container > [class*="col-"],
+    #featured-products-container > [class*="col-"] {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    
+    /* Categories: 4 columns on desktop */
+    #categories-container > [class*="col-"] {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    
+    /* Product card image sizing */
+    .product-card img {
+        height: 200px;
+        object-fit: cover;
+    }
+    
+    /* Hero section full size */
+    .hero-section h1,
+    .display-4 {
+        font-size: 3.5rem;
+    }
+    
+    .hero-section .lead {
+        font-size: 1.25rem;
+    }
+    
+    /* Cart layout full desktop */
+    .col-lg-8 {
+        flex: 0 0 66.666667%;
+        max-width: 66.666667%;
+    }
+    
+    .col-lg-4 {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+    
+    /* Filter sidebar */
+    aside.col-lg-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    
+    .col-lg-9 {
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+    
+    /* Product detail layout */
+    .col-lg-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    
+    /* Carousel sizing */
+    .carousel-item img {
+        max-height: 500px;
+        object-fit: contain;
+    }
+    
+    /* Typography */
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    h3 {
+        font-size: 1.75rem;
+    }
+    
+    /* Navigation */
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+    
+    .nav-link {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Large desktop (1200px+) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+    
+    /* Products can show more columns on very large screens */
+    #products-container > [class*="col-xl-3"],
+    #featured-products-container > [class*="col-lg-3"] {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+}
+
+/* Extra large desktop (1400px+) - maintain max width */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+    
+    /* Prevent content from stretching too wide */
+    .hero-section .container,
+    main .container {
+        max-width: 1320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Maximum width constraint (1920px) - Requirement 9.3 */
+@media (min-width: 1920px) {
+    .container,
+    .container-fluid {
+        max-width: 1600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Ensure content doesn't stretch too wide */
+    body {
+        background: #f8f9fa;
+    }
+    
+    main {
+        background: white;
+        max-width: 1600px;
+        margin: 0 auto;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+}
+
+/* Product Count */
+#product-count {
+    font-size: 0.95rem;
+}
+
+/* Additional Hover Effects - Requirement 10.2 */
+a {
+    transition: color 0.1s ease, opacity 0.1s ease;
+}
+
+a:hover {
+    text-decoration: none;
+    opacity: 0.9;
+}
+
+/* Input group buttons */
+.input-group-prepend .btn,
+.input-group-append .btn {
+    transition: all 0.1s ease;
+}
+
+.input-group-prepend .btn:hover,
+.input-group-append .btn:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+    transform: scale(1.05);
+}
+
+/* Quantity controls */
+.qty-decrease:hover,
+.qty-increase:hover {
+    background-color: #e2e6ea !important;
+    border-color: #dae0e5 !important;
+}
+
+/* Remove item button */
+.remove-item {
+    transition: all 0.1s ease;
+}
+
+.remove-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+/* Cart badge animation */
+.cart-badge {
+    transition: all 0.1s ease;
+}
+
+.cart-badge:not(:empty) {
+    animation: badge-pulse 0.3s ease;
+}
+
+@keyframes badge-pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Hero section button */
+.hero-section .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer links */
+footer a {
+    color: #fff;
+    transition: opacity 0.1s ease;
+}
+
+footer a:hover {
+    opacity: 0.8;
+}
+
+/* Carousel controls */
+.carousel-control-prev,
+.carousel-control-next {
+    transition: opacity 0.1s ease;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    opacity: 0.9;
+}
+
+/* Breadcrumb links */
+.breadcrumb-item a {
+    transition: color 0.1s ease;
+}
+
+.breadcrumb-item a:hover {
+    color: #0056b3;
+}
+
+/* Disabled button state */
+.btn:disabled,
+.btn.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn:disabled:hover,
+.btn.disabled:hover {
+    transform: none;
+    box-shadow: none;
+}

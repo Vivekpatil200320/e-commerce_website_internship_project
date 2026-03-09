@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Checkout - E-Commerce Store</title>
+    
+    <!-- Bootstrap 4.5 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- Font Awesome 5.10.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-store"></i> E-Commerce Store
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">
+                            <i class="fas fa-box"></i> Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="categories.html">
+                            <i class="fas fa-list"></i> Categories
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i> Cart
+                            <span class="badge badge-pill badge-danger cart-badge">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container py-4">
+            <h1 class="mb-4">
+                <i class="fas fa-credit-card"></i> Checkout
+            </h1>
+
+            <!-- Alert Container for Validation Errors -->
+            <div id="alert-container"></div>
+
+            <div class="row">
+                <!-- Checkout Form -->
+                <div class="col-lg-8 mb-4">
+                    <form id="checkout-form" novalidate>
+                        <!-- Shipping Information -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-shipping-fast"></i> Shipping Information
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="firstName">First Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="firstName" name="firstName" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="lastName">Last Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Address <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="address" name="address" placeholder="Street address, P.O. box" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="city">City <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="city" name="city" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="postalCode">Postal Code <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="postalCode" name="postalCode" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number <span class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="(123) 456-7890" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Information -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-credit-card"></i> Payment Information
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="cardNumber">Card Number <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="cardExpiry">Expiry Date <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="cardExpiry" name="cardExpiry" placeholder="MM/YY" maxlength="5" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="cardCvv">CVV <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="cardCvv" name="cardCvv" placeholder="123" maxlength="4" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-success btn-lg btn-block" id="place-order-btn">
+                            <i class="fas fa-check-circle"></i> Place Order
+                        </button>
+                        <a href="cart.html" class="btn btn-outline-secondary btn-block mt-2">
+                            <i class="fas fa-arrow-left"></i> Back to Cart
+                        </a>
+                    </form>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header bg-secondary text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-receipt"></i> Order Summary
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <!-- Cart Items -->
+                            <div id="order-items-container" class="mb-3">
+                                <!-- Order items will be loaded here -->
+                            </div>
+                            <hr>
+                            <!-- Order Total -->
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Subtotal:</span>
+                                <span id="order-subtotal">$0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Tax (0%):</span>
+                                <span>$0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Shipping:</span>
+                                <span>Free</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <strong>Total:</strong>
+                                <strong id="order-total" class="text-success">$0.00</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 E-Commerce Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- jQuery 3.x -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
+    <!-- Bootstrap 4.5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- Products Module -->
+    <script src="js/products.js"></script>
+    
+    <!-- Cart Module -->
+    <script src="js/cart.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    
+    <!-- Application Controller -->
+    <script src="js/app.js"></script>
+    
+    <!-- Checkout Page Script -->
+    <script>
+        $(document).ready(function() {
+            initCheckoutPage();
+        });
+
+        /**
+         * Initialize the checkout page
+         */
+        function initCheckoutPage() {
+            // Check if cart is empty (Requirement 12.3)
+            const cart = CartModule.getCart();
+            if (cart.length === 0) {
+                showEmptyCartError();
+                return;
+            }
+
+            loadOrderSummary();
+            setupFormValidation();
+            updateCartBadge();
+        }
+
+        /**
+         * Load and display order summary (Sub-task 10.2)
+         * Requirements: 7.3
+         */
+        function loadOrderSummary() {
+            const cart = CartModule.getCart();
+            const container = $('#order-items-container');
+            container.empty();
+
+            // Display each cart item
+            cart.forEach(function(item) {
+                const itemTotal = (item.price * item.quantity).toFixed(2);
+                const itemHtml = 
+                    '<div class="d-flex justify-content-between align-items-center mb-2">' +
+                        '<div class="flex-grow-1">' +
+                            '<small class="d-block font-weight-bold">' + item.name + '</small>' +
+                            '<small class="text-muted">Qty: ' + item.quantity + ' × $' + item.price.toFixed(2) + '</small>' +
+                        '</div>' +
+                        '<div class="text-right">' +
+                            '<small class="font-weight-bold">$' + itemTotal + '</small>' +
+                        '</div>' +
+                    '</div>';
+                container.append(itemHtml);
+            });
+
+            // Update totals
+            const total = CartModule.getTotalPrice();
+            $('#order-subtotal').text('$' + total.toFixed(2));
+            $('#order-total').text('$' + total.toFixed(2));
+        }
+
+        /**
+         * Setup form validation and submission (Sub-tasks 10.3, 10.4)
+         * Requirements: 7.4, 7.5, 7.6, 12.1
+         */
+        function setupFormValidation() {
+            const form = $('#checkout-form');
+
+            // Handle form submission
+            form.on('submit', function(e) {
+                e.preventDefault();
+                
+                // Clear previous alerts
+                $('#alert-container').empty();
+
+                // Validate form
+                if (validateCheckoutForm()) {
+                    // Process order
+                    processOrder();
+                }
+            });
+
+            // Format card number input
+            $('#cardNumber').on('input', function() {
+                let value = $(this).val().replace(/\s/g, '');
+                let formattedValue = value.match(/.{1,4}/g);
+                if (formattedValue) {
+                    $(this).val(formattedValue.join(' '));
+                }
+            });
+
+            // Format expiry date input
+            $('#cardExpiry').on('input', function() {
+                let value = $(this).val().replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+                $(this).val(value);
+            });
+
+            // Only allow numbers in CVV
+            $('#cardCvv').on('input', function() {
+                $(this).val($(this).val().replace(/\D/g, ''));
+            });
+        }
+
+        /**
+         * Validate checkout form (Sub-task 10.3)
+         * Requirements: 7.4, 7.5, 12.1
+         * @returns {boolean} True if form is valid
+         */
+        function validateCheckoutForm() {
+            const errors = [];
+            
+            // Validate shipping information
+            const firstName = $('#firstName').val().trim();
+            const lastName = $('#lastName').val().trim();
+            const address = $('#address').val().trim();
+            const city = $('#city').val().trim();
+            const postalCode = $('#postalCode').val().trim();
+            const phone = $('#phone').val().trim();
+
+            if (!firstName) {
+                errors.push('First name is required');
+            }
+            if (!lastName) {
+                errors.push('Last name is required');
+            }
+            if (!address) {
+                errors.push('Address is required');
+            }
+            if (!city) {
+                errors.push('City is required');
+            }
+            if (!postalCode) {
+                errors.push('Postal code is required');
+            } else if (!/^[A-Za-z0-9\s-]{3,10}$/.test(postalCode)) {
+                errors.push('Postal code must be 3-10 characters (letters, numbers, spaces, or hyphens)');
+            }
+            if (!phone) {
+                errors.push('Phone number is required');
+            } else if (!/^[\d\s\-\(\)]+$/.test(phone) || phone.replace(/\D/g, '').length < 10) {
+                errors.push('Phone number must contain at least 10 digits');
+            }
+
+            // Validate payment information
+            const cardNumber = $('#cardNumber').val().replace(/\s/g, '');
+            const cardExpiry = $('#cardExpiry').val();
+            const cardCvv = $('#cardCvv').val();
+
+            if (!cardNumber) {
+                errors.push('Card number is required');
+            } else if (!/^\d{13,19}$/.test(cardNumber)) {
+                errors.push('Card number must be 13-19 digits');
+            }
+
+            if (!cardExpiry) {
+                errors.push('Card expiry date is required');
+            } else if (!/^\d{2}\/\d{2}$/.test(cardExpiry)) {
+                errors.push('Card expiry must be in MM/YY format');
+            } else {
+                // Validate expiry date is not in the past
+                const [month, year] = cardExpiry.split('/').map(Number);
+                const currentDate = new Date();
+                const currentYear = currentDate.getFullYear() % 100;
+                const currentMonth = currentDate.getMonth() + 1;
+                
+                if (year < currentYear || (year === currentYear && month < currentMonth)) {
+                    errors.push('Card has expired');
+                }
+                if (month < 1 || month > 12) {
+                    errors.push('Invalid expiry month (must be 01-12)');
+                }
+            }
+
+            if (!cardCvv) {
+                errors.push('CVV is required');
+            } else if (!/^\d{3,4}$/.test(cardCvv)) {
+                errors.push('CVV must be 3 or 4 digits');
+            }
+
+            // Display errors if any (Requirement 12.1)
+            if (errors.length > 0) {
+                displayValidationErrors(errors);
+                return false;
+            }
+
+            return true;
+        }
+
+        /**
+         * Display validation errors using Bootstrap alerts (Sub-task 10.3)
+         * Requirements: 7.5, 12.1
+         * @param {Array} errors - Array of error messages
+         */
+        function displayValidationErrors(errors) {
+            const alertHtml = 
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
+                    '<h5 class="alert-heading">' +
+                        '<i class="fas fa-exclamation-triangle"></i> Please correct the following errors:' +
+                    '</h5>' +
+                    '<ul class="mb-0">' +
+                        errors.map(function(error) {
+                            return '<li>' + error + '</li>';
+                        }).join('') +
+                    '</ul>' +
+                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                        '<span aria-hidden="true">&times;</span>' +
+                    '</button>' +
+                '</div>';
+            
+            $('#alert-container').html(alertHtml);
+            
+            // Scroll to top to show errors
+            $('html, body').animate({ scrollTop: 0 }, 300);
+        }
+
+        /**
+         * Process order and navigate to confirmation (Sub-task 10.4)
+         * Requirements: 7.6
+         */
+        function processOrder() {
+            // Collect form data
+            const orderData = {
+                orderNumber: generateOrderNumber(),
+                orderDate: new Date().toISOString(),
+                shipping: {
+                    firstName: $('#firstName').val().trim(),
+                    lastName: $('#lastName').val().trim(),
+                    address: $('#address').val().trim(),
+                    city: $('#city').val().trim(),
+                    postalCode: $('#postalCode').val().trim(),
+                    phone: $('#phone').val().trim()
+                },
+                payment: {
+                    cardNumber: $('#cardNumber').val().replace(/\s/g, '').replace(/\d(?=\d{4})/g, '*'),
+                    cardExpiry: $('#cardExpiry').val()
+                },
+                items: CartModule.getCart(),
+                total: CartModule.getTotalPrice()
+            };
+
+            // Store order data in localStorage for confirmation page
+            try {
+                localStorage.setItem('lastOrder', JSON.stringify(orderData));
+            } catch (error) {
+                console.error('Error saving order data:', error);
+            }
+
+            // Clear cart
+            CartModule.clearCart();
+
+            // Navigate to confirmation page (Requirement 7.6)
+            window.location.href = 'confirmation.html';
+        }
+
+        /**
+         * Generate a random order number
+         * @returns {string} Order number
+         */
+        function generateOrderNumber() {
+            const timestamp = Date.now();
+            const random = Math.floor(Math.random() * 10000);
+            return 'ORD-' + timestamp + '-' + random;
+        }
+
+        /**
+         * Show empty cart error and redirect (Requirement 12.3)
+         */
+        function showEmptyCartError() {
+            const alertHtml = 
+                '<div class="alert alert-warning alert-dismissible fade show" role="alert">' +
+                    '<h5 class="alert-heading">' +
+                        '<i class="fas fa-shopping-cart"></i> Your cart is empty' +
+                    '</h5>' +
+                    '<p>You cannot proceed to checkout with an empty cart. Please add some products first.</p>' +
+                    '<hr>' +
+                    '<p class="mb-0"><i class="fas fa-info-circle"></i> Redirecting to products page in 3 seconds...</p>' +
+                '</div>';
+            
+            $('#alert-container').html(alertHtml);
+            
+            // Hide the form
+            $('#checkout-form').hide();
+            $('.col-lg-4').hide();
+            
+            // Redirect after 3 seconds
+            setTimeout(function() {
+                window.location.href = 'products.html';
+            }, 3000);
+        }
+
+        /**
+         * Update cart badge in navigation
+         */
+        function updateCartBadge() {
+            if (typeof CartModule !== 'undefined' && CartModule.updateCartBadge) {
+                CartModule.updateCartBadge();
+            }
+        }
+    </script>
+</body>
+</html>
